@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom';
 
 // const Card = ({ id, title, image, category }) => (
 //   <div id={id}>
@@ -18,15 +19,13 @@ import PropTypes from 'prop-types'
 
  // !!--- CON prop-types
 const Card = ({ id, title, image, category }) => (
-  <div >
+  <div>
     <h1>{title}</h1>
-    
-     <p>{category}</p>
-    
-    <img
-      src={image}
-      alt={title}
-    />
+
+    <p>{category}</p>
+    <Link to={`/Cards/${id}`}>
+      <img src={image} alt={title} />
+    </Link>
   </div>
 );
 // definimos que tipo de dato esperamos que nos llegue de cada propiedad

@@ -1,79 +1,32 @@
 import React from 'react';
-import Card from './card'
-const cards = [
-  {
-    id: 1,
-    title: "Bosque de Dean",
-    image: "https://picsum.photos/id/11/200/300",
-    category: "Montaña"
-  },
-  {
-    id: 2,      
-    image: "https://picsum.photos/id/12/300/400",
-    category: "Mar"
-  },
-  {
-    id: 3,
-    title: "Taganga",
-    image: "https://picsum.photos/id/13/100/200"
-  },
-  {
-    id: 4,
-    title: "Lima",
-    image: "https://picsum.photos/id/14/400/500",
-    category: "mar"
-  },
-  {
-    id: 5,
-    title: "Neon",
-    category: "Aire"
-  }
-];
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import Banner from './banner'
+import GridCard from './gridCard'
+import Form from './form'
+import Cards from './cards'
+import Menu from './menuNav'
+
+
 
 const App = () => (
-  <>
-    <div>
-      <h1>Fundamentos React</h1>
-    </div>
-    <article>
-      
-      {
-        cards.map(elem => 
-        <Card key={elem.id} id={elem.id} title={elem.title} image={elem.image} category={elem.category} />
-        )
-      }
-
-      {/* <Card
-        id={1}
-        title="Bosque de Dean"
-        image="https://picsum.photos/id/11/200/300"
-        category="Montaña"
+  <Router>
+    <Menu />  
+    <Switch>
+      <Route path="/" exact component={Banner} />
+      <Route path="/Cards/:id" component={Cards} />
+      <Route path="/Cards" component={GridCard} />
+      <Route path="/Login" component={() => <Form formName="Login" />} />
+      {/* Sin el parametro path Route define las rutas no conocidad, se podria crear un componente para este error. Es necesario utiliozar el componente Switch */}
+      <Route
+        component={() => (
+          <>
+            <div>ERROR 404</div>
+            <p>Ruta no definida</p>
+          </>
+        )}
       />
-      <Card
-        id={2}
-        
-        image="https://picsum.photos/id/12/300/400"
-        category="Mar"
-      />
-      <Card
-        id={3}
-        title="Taganga"
-        image="https://picsum.photos/id/13/100/200"
-        
-      />
-      <Card
-        id={4}
-        title="Lima"
-        image="https://picsum.photos/id/14/400/500"
-        category="mar"
-      />
-      <Card
-        id={5}
-        title="Neon"
-        category="Aire"
-      /> */}
-    </article>
-  </>
+    </Switch>
+  </Router>
 );
 
 export default App;
